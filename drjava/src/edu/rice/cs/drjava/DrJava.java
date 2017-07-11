@@ -250,6 +250,7 @@ public class DrJava {
   
   public static void configureAndLoadDrJavaRoot(String[] args) {
     try {
+System.out.println("r");
       // if there were files passed on the command line,
       // try to open them in an existing instance
       if (!_forceNewInstance &&
@@ -265,6 +266,7 @@ public class DrJava {
       int failCount = 0;
       while(failCount < 2) {
         // Restart if there are custom JVM args
+System.out.println("y");
         String masterMemory = getConfig().getSetting(MASTER_JVM_XMX).trim();
         boolean _doRestart = (getConfig().getSetting(MASTER_JVM_ARGS).length() > 0)
           || (!"".equals(masterMemory) && !OptionConstants.heapSizeChoices.get(0).equals(masterMemory));
@@ -286,7 +288,8 @@ public class DrJava {
           clearFilesToOpen();
           _log.log("_filesToOpen copied into class arguments, clearing _filesToOpen");
         }
-        
+        /*not use 
+*/
         if (_doRestart) {
           if (DrJava.getConfig().getSetting(OptionConstants.REMOTE_CONTROL_ENABLED)) {
             // at this time, OUR remote control server hasn't been started yet
@@ -299,6 +302,7 @@ public class DrJava {
           
           // Run a new copy of DrJava and exit
           try {
+//System.out.println("rrr");
             boolean failed = false;
             JVMBuilder jvmb = JVMBuilder.DEFAULT.jvmArguments(_jvmArgs);
             
@@ -314,6 +318,7 @@ public class DrJava {
             
             // start new DrJava
             Process p = jvmb.start(DrJavaRoot.class.getName(), classArgs);
+//	System.out.println("yy");
             _alreadyRestarted = true;
             _log.log("_alreadyRestarted = true");
             DelayedInterrupter timeout = new DelayedInterrupter(WAIT_BEFORE_DECLARING_SUCCESS);
@@ -370,6 +375,8 @@ public class DrJava {
         }
         
         else {
+System.out.println("yy!");
+//System.out.println(DrJava.getConfig().getSetting(OptionConstants.UUID));
           // No restart -- just invoke DrJavaRoot.main.
           DrJavaRoot.main(classArgs.toArray(new String[0]));
           // when we return from here, DrJavaRoot._mainFrame has been initialized

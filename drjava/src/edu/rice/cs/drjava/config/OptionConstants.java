@@ -68,6 +68,9 @@ public interface OptionConstants {
   /** A file path to a user's preferred browser. */
   public static final FileOption BROWSER_FILE = new FileOption("browser.file", FileOps.NULL_FILE);
   
+  /** A file path to a user's preferred browser. */
+  public static final StringOption UUID = new StringOption("uuid.string","");
+
   /** A String used to launch a user's preferred browser. It is tokenized and appended to the file path. */
   public static final StringOption BROWSER_STRING = new StringOption("browser.string", "");
   
