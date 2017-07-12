@@ -57,6 +57,7 @@ import edu.rice.cs.util.ArgumentTokenizer;
 import edu.rice.cs.util.Log;
 import edu.rice.cs.util.UnexpectedException;
 import edu.rice.cs.drjava.model.DrJavaFileUtils;
+import edu.rice.cs.drjava.collect.*;
 
 /** Startup class for DrJava consisting entirely of static members.  The main method reads the .drjava file (creating 
   * one if none exists) to get the critical information required to start the main JVM for DrJava: 
@@ -242,11 +243,15 @@ public class DrJava {
     if (handleCommandLineArgs(args)) {
       // Platform-specific UI setup.
       PlatformFactory.ONLY.beforeUISetup();
-      
+      System.out.println(getOperatingSystem());
+      System.out.println(getJavaVersion());
+      System.out.println(getInterfaceLanguage());
+      DataCollector.drjavaOpened(getOperatingSystem(),getJavaVersion(),getInterfaceLanguage());
 //    Utilities.showDebug("Calling configureAndLoadDrJavaRoot with args = " + args);
       configureAndLoadDrJavaRoot(args); 
     }
   }
+  
   
   public static void configureAndLoadDrJavaRoot(String[] args) {
     try {
@@ -375,8 +380,8 @@ System.out.println("y");
         }
         
         else {
-System.out.println("yy!");
-//System.out.println(DrJava.getConfig().getSetting(OptionConstants.UUID));
+	System.out.println("yy!");
+	System.out.println(DrJava.getConfig().getSetting(OptionConstants.UUID));
           // No restart -- just invoke DrJavaRoot.main.
           DrJavaRoot.main(classArgs.toArray(new String[0]));
           // when we return from here, DrJavaRoot._mainFrame has been initialized
@@ -602,7 +607,36 @@ System.out.println("yy!");
     _jvmArgs.clear();
     // Do not set _config or _propertiesFile to null because THEY ARE static
   }
+/**
+ * Get operating system from system
+ * @return operating system
+ */
+  private static String getOperatingSystem(){
+	return System.getProperty("os.name") +
+            "/" + System.getProperty("os.arch") +
+            "/" + System.getProperty("os.version");
+	
+}
 
+  /**
+   * Get Java version of drjava
+   * 
+   * @return Java version
+   */
+  
+  private static String getJavaVersion(){
+	  
+	  return System.getProperty("java.version");
+  }
+  
+  /**
+   * Get language the user use for drjava interface
+   */
+  private static String getInterfaceLanguage(){
+	  
+	  return "english";
+  }
+  
   /** Warn if this system is Linux with Compiz. 
    * @return true if is Linux with Compiz; false otherwise
    */
