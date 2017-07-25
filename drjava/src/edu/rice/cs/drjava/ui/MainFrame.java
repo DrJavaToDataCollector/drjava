@@ -9356,7 +9356,6 @@ public class MainFrame extends SwingFrame implements ClipboardOwner, DropTargetL
     
     public void activeDocumentRefreshed(final OpenDefinitionsDocument active) {
       assert EventQueue.isDispatchThread();
-//          System.err.println("activeDocumentRefreshed");
       _recentDocFrame.pokeDocument(active);
       _refreshDefScrollPane();
       

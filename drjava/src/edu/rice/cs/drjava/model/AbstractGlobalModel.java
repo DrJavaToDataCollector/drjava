@@ -158,6 +158,8 @@ import edu.rice.cs.util.text.EditDocumentInterface;
 
 import static edu.rice.cs.plt.debug.DebugUtil.debug;
 
+//import edu.rice.cs.drjava.collect.*;
+
 /** In simple terms, a DefaultGlobalModel without an interpreter, compiler, junit testing, debugger or javadoc.
   * Hence, it only has only document handling functionality
   * @version $Id$
@@ -1231,6 +1233,7 @@ public class AbstractGlobalModel implements SingleDisplayModel, OptionConstants,
     if (dir == null) dir = getMasterWorkingDirectory();
     OpenDefinitionsDocument doc = newFile(dir, text);
     setActiveDocument(doc);
+    //DataCollector.newFile(dir, doc);
     return doc;
   }
   
@@ -1430,6 +1433,7 @@ public class AbstractGlobalModel implements SingleDisplayModel, OptionConstants,
       for(OpenDefinitionsDocument d : alreadyOpenDocuments) {
         _notifier.handleAlreadyOpenDocument(d);
         _notifier.fileOpened(d);
+	//DataCollector.openClass(d)
       }
     }
     

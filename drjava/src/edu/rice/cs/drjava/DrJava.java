@@ -57,7 +57,7 @@ import edu.rice.cs.util.ArgumentTokenizer;
 import edu.rice.cs.util.Log;
 import edu.rice.cs.util.UnexpectedException;
 import edu.rice.cs.drjava.model.DrJavaFileUtils;
-import edu.rice.cs.drjava.collect.*;
+//import edu.rice.cs.drjava.collect.*;
 
 /** Startup class for DrJava consisting entirely of static members.  The main method reads the .drjava file (creating 
   * one if none exists) to get the critical information required to start the main JVM for DrJava: 
@@ -246,7 +246,7 @@ public class DrJava {
       System.out.println(getOperatingSystem());
       System.out.println(getJavaVersion());
       System.out.println(getInterfaceLanguage());
-      DataCollector.drjavaOpened(getOperatingSystem(),getJavaVersion(),getInterfaceLanguage());
+//      DataCollector.drjavaOpened(getOperatingSystem(),getJavaVersion(),getInterfaceLanguage());
 //    Utilities.showDebug("Calling configureAndLoadDrJavaRoot with args = " + args);
       configureAndLoadDrJavaRoot(args); 
     }
