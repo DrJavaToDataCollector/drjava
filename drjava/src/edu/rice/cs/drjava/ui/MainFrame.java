@@ -5148,6 +5148,7 @@ public class MainFrame extends SwingFrame implements ClipboardOwner, DropTargetL
     // Either this is an external file or user actually wants to close it
     for(OpenDefinitionsDocument doc: l) {
       _model.closeFile(doc);
+      //DataCollector.closeFile(doc);
     }
   }
 
@@ -5315,9 +5316,13 @@ public class MainFrame extends SwingFrame implements ClipboardOwner, DropTargetL
         boolean toReturn = _model.getActiveDocument().saveFileAs(_saveAsSelector);
         /** Delete the old file if save was successful. */
         // TODO: what if delete() fails? (mgricken)
+
+	//File oldFile = fileToDelete;
         if (toReturn && ! _model.getActiveDocument().getFile().equals(fileToDelete)) fileToDelete.delete();
         /** this highlights the document in the navigator */
         _model.refreshActiveDocument();
+	//File newFile = _model.getActiveDocument().getFile();
+	//DataCollector.RenamedClass(oldFile, newFile);
         return toReturn;
       }
     }

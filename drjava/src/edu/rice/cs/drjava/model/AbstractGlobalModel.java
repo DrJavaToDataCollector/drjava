@@ -1433,7 +1433,7 @@ public class AbstractGlobalModel implements SingleDisplayModel, OptionConstants,
       for(OpenDefinitionsDocument d : alreadyOpenDocuments) {
         _notifier.handleAlreadyOpenDocument(d);
         _notifier.fileOpened(d);
-	//DataCollector.openClass(d)
+	//DataCollector.openClass(d.getParentDirectory(),d)
       }
     }
     
@@ -2092,7 +2092,8 @@ public class AbstractGlobalModel implements SingleDisplayModel, OptionConstants,
     _ensureNotActive(docs);
     
     // Close the files in docs.
-    for (OpenDefinitionsDocument doc : docs) { closeFileWithoutPrompt(doc); }  
+    for (OpenDefinitionsDocument doc : docs) { closeFileWithoutPrompt(doc); } 
+    //for (OpenDefinitionsDocument doc : docs) { DataCollector.closeFile(doc);} 
     return true;
   }
   
