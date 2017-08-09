@@ -5148,7 +5148,6 @@ public class MainFrame extends SwingFrame implements ClipboardOwner, DropTargetL
     // Either this is an external file or user actually wants to close it
     for(OpenDefinitionsDocument doc: l) {
       _model.closeFile(doc);
-      //DataCollector.closeFile(doc);
     }
   }
 
@@ -5322,7 +5321,7 @@ public class MainFrame extends SwingFrame implements ClipboardOwner, DropTargetL
         /** this highlights the document in the navigator */
         _model.refreshActiveDocument();
 	//File newFile = _model.getActiveDocument().getFile();
-	//DataCollector.RenamedClass(oldFile, newFile);
+	//DataCollector.renamedClass(oldFile, newFile);
         return toReturn;
       }
     }

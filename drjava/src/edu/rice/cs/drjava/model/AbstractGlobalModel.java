@@ -1233,7 +1233,6 @@ public class AbstractGlobalModel implements SingleDisplayModel, OptionConstants,
     if (dir == null) dir = getMasterWorkingDirectory();
     OpenDefinitionsDocument doc = newFile(dir, text);
     setActiveDocument(doc);
-    //DataCollector.newFile(dir, doc);
     return doc;
   }
   
@@ -1435,8 +1434,7 @@ public class AbstractGlobalModel implements SingleDisplayModel, OptionConstants,
         _notifier.fileOpened(d);
 	//DataCollector.openClass(d.getParentDirectory(),d)
       }
-    }
-    
+    } 
     return retDocs.toArray(new OpenDefinitionsDocument[0]);
   }
   
@@ -3338,6 +3336,8 @@ public class AbstractGlobalModel implements SingleDisplayModel, OptionConstants,
         //   We don't save if this happens.
         return false;
       }
+	//DefinitionsDocument ddoc = getDocument();
+	//DataCollector.newFile(_packageName,_parentDir, ddoc);
     }
     
     /** This method tells the document to prepare all the DrJavaBook and PagePrinter objects. */

@@ -65,6 +65,8 @@ import edu.rice.cs.javalanglevels.tree.*;
 import edu.rice.cs.plt.io.IOUtil;
 import edu.rice.cs.plt.iter.IterUtil;
 import edu.rice.cs.plt.collect.CollectUtil;
+
+//import edu.rice.cs.drjava.collect.*;
 // import edu.rice.cs.plt.tuple.Pair;  
 // TODO: use the preceding pair class instead of javalanglevels.Pair; must change javalanglevels code as well 
 
@@ -273,6 +275,7 @@ public class DefaultCompilerModel implements CompilerModel {
       }
       catch (Throwable t) {
         DJError err = new DJError(t.toString(), false);
+	//DataCollector.compiled(filesToCompile, Arrays.asList(err),false,false);
         _distributeErrors(Arrays.asList(err));
         throw new UnexpectedException(t);
       }
@@ -361,11 +364,13 @@ public class DefaultCompilerModel implements CompilerModel {
         synchronized(_compilerLock) {
           if (preprocessedFiles == null) {
             errors.addAll(compiler.compile(files, classPath, null, buildDir, bootClassPath, null, true));
+	//DataCollector.compiled(files, errors,true,true);
           }
           else {
             /** If compiling a language level file, do not show warnings, as these are not caught by the language level 
               * parser */
             errors.addAll(compiler.compile(preprocessedFiles, classPath, null, buildDir, bootClassPath, null, false));
+	//DataCollector.compiled(files, errors,false,true);
           }
         }
       }
